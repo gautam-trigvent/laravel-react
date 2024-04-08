@@ -1,0 +1,11 @@
+# Ignore .env file in the root directory
+/.env
+
+# Ignore .env file inside the backend folder
+/backend/.env
+
+# Ignore vendor folder inside the backend folder
+/backend/vendor/
+
+# Ignore node_modules folder inside the backend folder
+/backend/node_modules/

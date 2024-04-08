@@ -1,0 +1,38 @@
+services:
+    php-apache:
+        build: .
+        ports:
+            - "8000:80"
+            - "5173:5173"
+        volumes:
+            - ./backend:/var/www/html
+        # command: ["php", "artisan", "migrate"]
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        depends_on:
+            - mariadb
+
+    mariadb:
+        image: mariadb:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - mariadb-data:/var/lib/mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8080:80"
+        environment:
+            - PMA_HOST=mariadb
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        depends_on:
+            - mariadb
+volumes:
+    mariadb-data:
