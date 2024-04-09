@@ -8,7 +8,11 @@ export default {
         "./resources/**/*.tsx",
     ],
     theme: {
-        extend: {},
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Roboto', 'Arial', 'sans-serif'],
+          },
+        },
     },
     plugins: [],
 }

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-//     return view('welcome');
-    return Inertia::render("Home");
+    return Inertia::render("Auth/Login");
 });
+
+// Route::get('/', function () {
+//     return Inertia::render("Home");
+// });

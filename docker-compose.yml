@@ -32,6 +32,6 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         depends_on:
             - mariadb
-    
+
 volumes:
     mariadb-data:
