@@ -4,7 +4,18 @@ WORKDIR /var/www/html
 
 COPY backend /var/www/html
 
+# Copy Apache configuration file with updated DocumentRoot
+COPY ./apache2/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable Apache modules and configure the document root
+RUN a2enmod rewrite \
+    && chown -R www-data:www-data /var/www/html
+
+
 RUN docker-php-ext-install pdo pdo_mysql mysqli
+
+# Restart Apache to apply changes
+RUN service apache2 restart
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
