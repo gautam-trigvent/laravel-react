@@ -5,7 +5,6 @@ services:
             - "8000:80"
         volumes:
             - ./backend:/var/www/html
-        # command: ["php", "artisan", "migrate"]
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -33,5 +32,6 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         depends_on:
             - mariadb
+    
 volumes:
     mariadb-data:
